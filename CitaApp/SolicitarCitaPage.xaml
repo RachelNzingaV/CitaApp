@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CitaApp.SolicitarCitaPage"
+             Title="Solicitar cita">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+
+            <Entry x:Name="txtNombre" Placeholder="Nombre" />
+            <Entry x:Name="txtApellidos" Placeholder="Apellidos" />
+            <Entry x:Name="txtNumPaciente" Placeholder="Número de paciente" Keyboard="Numeric" />
+
+            <Label Text="Preferencia de turno" />
+            <Picker x:Name="pickerTurno" Title="Preferencia de turno">
+                <Picker.Items>
+                    <x:String>Mañana</x:String>
+                    <x:String>Tarde</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <HorizontalStackLayout Spacing="10">
+                <CheckBox x:Name="chkRecuerda" />
+                <Label Text="Recuerda mis datos" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Label Text="Selecciona una especialidad" FontAttributes="Bold" />
+
+            <CollectionView x:Name="cvEspecialidades" SelectionMode="Single" HeightRequest="350">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnDefinitions="Auto, *, Auto">
+                            <Image Source="{Binding Imagen}" WidthRequest="40" HeightRequest="40" VerticalOptions="Center" />
+                            <VerticalStackLayout Grid.Column="1" Margin="10,0,0,0" VerticalOptions="Center">
+                                <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                                <Label Text="{Binding Doctor}" FontSize="12" TextColor="Gray" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End">
+                                <Label Text="{Binding DiasEspera}" HorizontalOptions="Center" FontAttributes="Bold" />
+                                <Label Text="días espera" FontSize="10" TextColor="Gray" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Solicitar cita" Clicked="OnEnviarCitaClicked" Margin="0,10,0,0"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

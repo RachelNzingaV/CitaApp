@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CitaApp.ConsultarCitaPage"
+             Title="Consulta de citas">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Label Text="Mis citas solicitadas" FontAttributes="Bold" FontSize="18" />
+
+        <CollectionView x:Name="cvCitas">
+            <CollectionView.EmptyView>
+                <ContentView>
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="30">
+                        <Label Text="Todavía no has solicitado ninguna cita." 
+                               HorizontalTextAlignment="Center" 
+                               TextColor="Gray" />
+                    </VerticalStackLayout>
+                </ContentView>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5" Padding="15">
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Text="{Binding Especialidad}" FontAttributes="Bold" FontSize="16" />
+                            <Label Grid.Column="1" Text="{Binding DiasEspera}" FontAttributes="Bold" FontSize="16" HorizontalOptions="End" />
+                            <Label Grid.Column="1" Grid.Row="1" Text="días espera" FontSize="10" TextColor="Gray" HorizontalOptions="End" />
+
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="0" Margin="0,5,0,0">
+                                <Label Text="{Binding Doctor}" FontSize="13" TextColor="DimGray" />
+                                <Label Text="{Binding FechaSolicitud, StringFormat='Solicitada el {0:dd/MM/yyyy HH:mm}'}" 
+                                       FontSize="12" 
+                                       TextColor="Gray" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
